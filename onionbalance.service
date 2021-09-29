@@ -1,0 +1,13 @@
+[Unit]
+Description=Service that keeps running the Onionbalance from startup.
+After=network.target
+[Install]
+WantedBy=multi-user.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /root/onionbalance/onionbalance.py -v info -c /root/onionbalance/config/config.yaml -p 9051
+Restart=on-abort
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=%n
